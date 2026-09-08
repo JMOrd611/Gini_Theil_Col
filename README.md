@@ -11,14 +11,27 @@ Gran Encuesta Integrada de Hogares (GEIH), 2020-2024. Microdatos públicos dispo
 
 Los microdatos no se incluyen en este repositorio. Descárgalos y ubícalos en `Data/`.
 
-Para 2020-2023 el script espera los cuatro módulos mensuales con el formato `MesAAAA` + numeral romano del módulo, por ejemplo `Ene2020I.DTA`, `Ene2020II.DTA`, `Ene2020III.DTA`, `Ene2020IV.DTA`. Los cuatro modulos a descargar para cada mes son `Ocupados`, `No Ocupados`, `Otros ingresos e impuestos` y `Otras formas de trabajo`.
-
-Algunos meses o años vienen con menos de cuatro archivos debido a que estos no existen en el repositorio del DANE.
-
-Meses en español abreviados a tres letras: Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic.
+Para 2020-2023 el script espera los cuatro módulos mensuales con el formato `MesAAAA` + numeral romano del módulo, por ejemplo `Ene2020I.DTA`, `Ene2020II.DTA`, `Ene2020III.DTA`, `Ene2020IV.DTA`. Los cuatro modulos a descargar para cada mes son `Ocupados`, `No Ocupados`, `Otros ingresos e impuestos` y `Otras formas de trabajo` (El sufijo que se coloque a cada uno es indiferente). Meses en español abreviados a tres letras: Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic.
 
 Fuente: Departamento Administrativo Nacional de Estadística:
 www.dane.gov.co
+
+### Limitaciones de comparabilidad
+
+La definición de ingreso total personal no es homogénea a lo largo de la serie, por disponibilidad de los módulos en el repositorio del DANE. Las fuentes efectivamente incluidas en cada tramo son:
+
+| Periodo | Fuentes de ingreso incluidas |
+|---|---|
+| Mar–Abr 2020 | Solo ingreso laboral (`INGLABO`) |
+| May–Jul 2020 | Ingreso laboral e ingresos de desocupados (`P7422S1`) |
+| Ene–Feb y Ago–Dic 2020 | Ingreso laboral, arriendos, pensiones, pensión alimenticia, aportes familiares, remesas, ayudas institucionales, ingresos financieros, cesantías, ingresos ocasionales e ingresos de desocupados |
+| 2021–2024 | Todas las anteriores más otras transferencias (`P3087S1`) |
+
+Esto implica que los índices de marzo a julio de 2020 se calculan sobre una definición más estrecha de ingreso y no son estrictamente comparables con los del resto de la serie. Como las fuentes omitidas en esos meses son mayoritariamente no laborales y se concentran en tramos específicos de la distribución, su exclusión afecta el nivel de los índices, y la dirección del sesgo depende de cómo se distribuyan esas fuentes entre departamentos.
+
+De forma análoga, la variable de otras transferencias (`P3087S1`) no existe en 2020, por lo que la comparación entre 2020 y los años siguientes incorpora una diferencia de cobertura además de cualquier cambio real en la distribución del ingreso.
+
+Los ingresos se deflactan con el IPC mensual, con valores incorporados directamente en `Code/01_GEIH.do`. La información sobre la serie de empalme se puede encontrar [aquí] (https://www.dane.gov.co/files/operaciones/IPC/ago2026/anex-IPC-Indices-ago2026.xlsx)
 
 ## Estructura
 
