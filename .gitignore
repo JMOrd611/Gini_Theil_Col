@@ -55,5 +55,6 @@ rsconnect/
 *.rds
 *.csv
 *.xlsx
+!Output/Total.dta
 
 [Tt]emp/
