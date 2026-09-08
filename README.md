@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 Desigualdad salarial en Colombia: una desagregación departamental
+=======
+# Sub-national inequality indexes
+
+
+>>>>>>> ea89ac5a2908b54e83086980bc2042666ee9a07e
 
 Código de la ponencia presentada en el IV Network de Métodos Cuantitativos (AFADECO, Barranquilla, 2025).
 
