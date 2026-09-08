@@ -1,10 +1,4 @@
-<<<<<<< HEAD
 Desigualdad salarial en Colombia: una desagregación departamental
-=======
-# Sub-national inequality indexes
-
-
->>>>>>> ea89ac5a2908b54e83086980bc2042666ee9a07e
 
 Código de la ponencia presentada en el IV Network de Métodos Cuantitativos (AFADECO, Barranquilla, 2025).
 
@@ -14,7 +8,8 @@ Los datos no se incluyen en este repositorio; descárgalos y ubícalos en `Data/
 
 ## Estructura
 - `Code/00_master.R` — ejecuta todo el pipeline en orden
-- `Code/Gini-Theil.R` — cálculo de índices de Gini y Theil
+- `Code/01_GEIH.do` — realiza el limpiado de base de datos de la GEIH. Al final genera el archivo "Total.DTA" de `Output/`.
+- `Code/Gini-Theil.R` — cálculo de índices de Gini y Theil a nivel subnacional
 - `Data/` — datos de entrada (no versionados)
 - `Output/` — tablas y figuras generadas
 
@@ -23,6 +18,6 @@ Los datos no se incluyen en este repositorio; descárgalos y ubícalos en `Data/
 2. Abrir el proyecto y ejecutar `Code/00_master.R`
 
 ## Requisitos
-R 
+R - Stata
 ## Autor
 Jose Manuel Ordoñez Claros — [[ORCID](https://orcid.org/0009-0000-3332-1087)] 
