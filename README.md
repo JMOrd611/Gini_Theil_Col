@@ -31,7 +31,7 @@ Esto implica que los índices de marzo a julio de 2020 se calculan sobre una def
 
 De forma análoga, la variable de otras transferencias (`P3087S1`) no existe en 2020, por lo que la comparación entre 2020 y los años siguientes incorpora una diferencia de cobertura además de cualquier cambio real en la distribución del ingreso.
 
-Los ingresos se deflactan con el IPC mensual, con valores incorporados directamente en `Code/01_GEIH.do`. La información sobre la serie de empalme se puede encontrar [aquí](https://www.dane.gov.co/files/operaciones/IPC/ago2026/anex-IPC-Indices-ago2026.xlsx)
+Los ingresos se deflactan con el IPC mensual, con valores incorporados directamente en `Code/01_GEIH.do`. La información sobre la serie de empalme se puede encontrar [aquí](https://www.dane.gov.co/index.php/estadisticas-por-tema/precios-y-costos/indice-de-precios-al-consumidor-ipc).
 
 ## Estructura
 

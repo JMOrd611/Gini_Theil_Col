@@ -48,7 +48,8 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-[Dd]ata/
+[Dd]ata/*
+![Dd]ata/.gitkeep
 *.dta
 *.DTA
 *.RData

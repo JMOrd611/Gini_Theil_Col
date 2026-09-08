@@ -16,6 +16,7 @@ global root "C:/ruta/a/desigualdad-salarial-colombia"
 cd "$root"
 
 cap mkdir "Temp"
+cap mkdir "Data"
 cap mkdir "Output"
 
 **************************************************************
