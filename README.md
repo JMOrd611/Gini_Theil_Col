@@ -1,30 +1,48 @@
 # Desigualdad salarial en Colombia: una desagregación departamental
 
-Código de la ponencia presentada en el IV Network de Métodos Cuantitativos (AFADECO, Barranquilla, 2025).
+Código de la ponencia presentada en el IV Network de Métodos
+Cuantitativos (AFADECO, Barranquilla, 2025).
+
+Calcula índices de Gini, Theil, Palma y Atkinson sobre el ingreso total personal, con desagregación departamental, a partir de los microdatos de la GEIH 2020-2024. El índice de Theil se descompone en sus componentes inter e intradepartamental. Los ingresos se deflactan a precios constantes con el IPC mensual.
 
 ## Datos
-Gran Encuesta Integrada de Hogares (GEIH), 2020-2025. Microdatos públicos disponibles en el [catálogo del DANE](https://microdatos.dane.gov.co/index.php/catalog/MERCLAB-Microdatos).
 
-Los microdatos originales no se incluyen en este repositorio.
-Descárgalos y ubícalos en `Data/`.
+Gran Encuesta Integrada de Hogares (GEIH), 2020-2024. Microdatos públicos disponibles en el [catálogo del DANE](https://microdatos.dane.gov.co/index.php/catalog/MERCLAB-Microdatos).
+
+Los microdatos no se incluyen en este repositorio. Descárgalos y ubícalos en `Data/`.
+
+Para 2020-2023 el script espera los cuatro módulos mensuales con el formato `MesAAAA` + numeral romano del módulo, por ejemplo `Ene2020I.DTA`, `Ene2020II.DTA`, `Ene2020III.DTA`, `Ene2020IV.DTA`.
+
+Meses en español abreviados a tres letras: Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic.
+
+Para 2024 el script espera un único archivo mensual con el nombre completo del mes: `Enero2024.dta`, `Febrero2024.dta`, `Marzo2024.dta`, `Abril2024.dta`, `Mayo2024.dta`, `Junio2024.dta`, `Julio2024.dta`, `Agosto2024.dta`, `Septi2024.dta`, `Octubre2024.dta`, `Novi2024.dta`, `Dici2024.dta`.
 
 Fuente: Departamento Administrativo Nacional de Estadística:
 www.dane.gov.co
 
 ## Estructura
-- `Code/00_R_Master.R` — ejecuta el código de R
-- `Code/01_GEIH.do` — realiza el limpiado de base de datos de la GEIH. Al final genera el archivo "Total.DTA" de `Output/`.
-- `Code/02_Gini-Theil.R` — cálculo de índices de Gini y Theil a nivel subnacional
-- `Data/` — datos de entrada (descargar directamente del DANE)
-- `Output/` — tablas, figuras y archivos generados
+
+- `Code/01_GEIH.do` — apila y limpia los microdatos; genera `Output/Total.DTA`
+- `Code/02_R_Master.R` — script maestro de la etapa en R: carga paquetes, verifica insumos y ejecuta el análisis
+- `Code/03_Gini-Theil.R` — cálculo de los índices de desigualdad
+- `Data/` — microdatos de entrada (no versionados)
+- `Temp/` — archivos intermedios que genera Stata (no versionados; se crea sola)
+- `Output/` — base consolidada y resultados
 
 ## Cómo ejecutar
-1. Descargar los datos y ubicarlos en `Data/`
-2. Abrir el proyecto y ejecutar `Code/01_GEIH.do`
-3. Usar el archivo final del paso anterior (Igual a `Output/Total.DTA`) y ejecutar `Code/00_R_Master.R`.
+
+El pipeline usa dos lenguajes y debe ejecutarse en este orden.
+
+1. Descargar los microdatos de la GEIH y ubicarlos en `Data/` con los nombres indicados arriba.
+2. Abrir `Code/01_GEIH.do` en Stata y ajustar la ruta del `global root` de la línea 15 a la ubicación del repositorio en tu equipo. Ejecutar. Genera `Output/Total.DTA`.
+3. Abrir el archivo `.Rproj` de la raíz y ejecutar `Code/02_R_Master.R`. Genera `Output/Datos.xlsx` con todos los índices.
 
 ## Requisitos
-- Stata 17 
-- R - Paquetes: haven, dplyr, ineq, ggplot2
+
+- Stata 17 o superior
+- R 4.4.2 o superior. Paquetes: haven, dplyr, ineq, DescTools, openxlsx, concstats.
+
 ## Autor
-Jose Manuel Ordoñez Claros — [ORCID](https://orcid.org/0009-0000-3332-1087) 
+
+Jose Manuel Ordoñez Claros —
+[ORCID 0009-0000-3332-1087](https://orcid.org/0009-0000-3332-1087)

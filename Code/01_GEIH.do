@@ -1,117 +1,135 @@
 clear all
+version 17
+
+*======================================================================
+* 01_GEIH.do
+* Apila y limpia los microdatos de la GEIH, 2020-2024.
+* Genera Output/Total.DTA con ingreso total deflactado por persona.
+*
+* UNICO AJUSTE NECESARIO: la ruta en el global root.
+*
+* Fuente: Departamento Administrativo Nacional de Estadistica:
+* www.dane.gov.co
+*======================================================================
+
+global root "C:/ruta/a/desigualdad-salarial-colombia"
+cd "$root"
+
+cap mkdir "Temp"
+cap mkdir "Output"
+
 **************************************************************
 ***************-------2020----------**************************
 **************************************************************
-cd "D:\U\Investigaciones\Gini Pandemia\Datos GEIH\" 
 
-use "Ene2020I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ene2020II.DTA"
+use "Data/Ene2020I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ene2020II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ene2020III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ene2020III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ene2020IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ene2020IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1
-save "Ene2020.DTA", replace
+save "Temp/Ene2020.DTA", replace
 
-use "Feb2020I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Feb2020II.DTA"
+use "Data/Feb2020I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Feb2020II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Feb2020III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Feb2020III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Feb2020IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Feb2020IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 
-save "Feb2020.DTA", replace
+save "Temp/Feb2020.DTA", replace
 
-use "Mar2020I.DTA"
+use "Data/Mar2020I.DTA"
 keep MES DPTO INGLABO
-save "Mar2020.DTA", replace
+save "Temp/Mar2020.DTA", replace
 
-use "Abr2020I.DTA" 
+use "Data/Abr2020I.DTA" 
 keep MES DPTO INGLABO
-save "Abr2020.DTA", replace
+save "Temp/Abr2020.DTA", replace
 
-use "May2020I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "May2020II.DTA"
+use "Data/May2020I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/May2020II.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7422S1 
-save "May2020.DTA", replace
+save "Temp/May2020.DTA", replace
 
-use "Jun2020I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jun2020II.DTA"
+use "Data/Jun2020I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jun2020II.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7422S1 
-save "Jun2020.DTA", replace
+save "Temp/Jun2020.DTA", replace
 
-use "Jul2020I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jul2020II.DTA"
+use "Data/Jul2020I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jul2020II.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7422S1 
-save "Jul2020.DTA", replace
+save "Temp/Jul2020.DTA", replace
 
-use "Ago2020I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ago2020II.DTA"
+use "Data/Ago2020I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ago2020II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ago2020III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ago2020III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ago2020IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ago2020IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 
-save "Ago2020.DTA", replace
+save "Temp/Ago2020.DTA", replace
 
-use "Sep2020I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Sep2020II.DTA"
+use "Data/Sep2020I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Sep2020II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Sep2020III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Sep2020III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Sep2020IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Sep2020IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 
-save "Sep2020.DTA", replace
+save "Temp/Sep2020.DTA", replace
 
-use "Oct2020I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Oct2020II.DTA"
+use "Data/Oct2020I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Oct2020II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Oct2020III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Oct2020III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Oct2020IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Oct2020IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 
-save "Oct2020.DTA", replace
+save "Temp/Oct2020.DTA", replace
 
-use "Nov2020I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Nov2020II.DTA"
+use "Data/Nov2020I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Nov2020II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Nov2020III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Nov2020III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Nov2020IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Nov2020IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 
-save "Nov2020.DTA", replace
+save "Temp/Nov2020.DTA", replace
 
-use "Dic2020I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Dic2020II.DTA"
+use "Data/Dic2020I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Dic2020II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Dic2020III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Dic2020III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Dic2020IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Dic2020IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 
-save "Dic2020.DTA", replace
+save "Temp/Dic2020.DTA", replace
 
-use "Ene2020.DTA"
-append using "Feb2020.DTA"
-append using "Mar2020.DTA"
-append using "Abr2020.DTA"
-append using "May2020.DTA"
-append using "Jun2020.DTA"
-append using "Jul2020.DTA"
-append using "Ago2020.DTA"
-append using "Sep2020.DTA"
-append using "Oct2020.DTA"
-append using "Nov2020.DTA"
-append using "Dic2020.DTA"
+use "Temp/Ene2020.DTA"
+append using "Temp/Feb2020.DTA"
+append using "Temp/Mar2020.DTA"
+append using "Temp/Abr2020.DTA"
+append using "Temp/May2020.DTA"
+append using "Temp/Jun2020.DTA"
+append using "Temp/Jul2020.DTA"
+append using "Temp/Ago2020.DTA"
+append using "Temp/Sep2020.DTA"
+append using "Temp/Oct2020.DTA"
+append using "Temp/Nov2020.DTA"
+append using "Temp/Dic2020.DTA"
 gen Ano = 2020
 
 destring MES DPTO, replace
@@ -134,149 +152,148 @@ ren INGRETOTAL INGTOTALPERSO
 drop if INGLABO ==. & ALQUILER ==. & INGnoOCUPA ==. & PENSIOJUB ==. & PENALIM ==. & APORTESFAMI ==. & REMESAS ==. & INGRESOL ==. & INGRESOSFINAN ==. & CESANTIAS ==. & INGOCACIONALES ==.
 keep MES DPTO INGTOTALPERSO Ano
 
-save "2020.DTA", replace
+save "Temp/2020.DTA", replace
 clear all
 **************************************************************
 ***************-------2021----------**************************
 **************************************************************
-cd "D:\U\Investigaciones\Gini Pandemia\Datos GEIH\" 
-use "Ene2021I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ene2021II.DTA"
+use "Data/Ene2021I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ene2021II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ene2021III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ene2021III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ene2021IV.DTA"
-drop _merge 
-keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Ene2021.DTA", replace
-
-use "Feb2021I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Feb2021II.DTA"
-drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Feb2021III.DTA"
-drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Feb2021IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ene2021IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Feb2021.DTA", replace
+save "Temp/Ene2021.DTA", replace
 
-use "Mar2021I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Mar2021II.DTA"
+use "Data/Feb2021I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Feb2021II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Mar2021III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Feb2021III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Mar2021IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Feb2021IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Mar2021.DTA", replace
+save "Temp/Feb2021.DTA", replace
 
-use "Abr2021I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Abr2021II.DTA"
+use "Data/Mar2021I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Mar2021II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Abr2021III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Mar2021III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Abr2021IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Mar2021IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Abr2021.DTA", replace
+save "Temp/Mar2021.DTA", replace
 
-use "May2021I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "May2021II.DTA"
+use "Data/Abr2021I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Abr2021II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "May2021III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Abr2021III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "May2021IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Abr2021IV.DTA"
+drop _merge 
+keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
+save "Temp/Abr2021.DTA", replace
+
+use "Data/May2021I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/May2021II.DTA"
+drop _merge 
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/May2021III.DTA"
+drop _merge 
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/May2021IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 replace MES = "05"
-save "May2021.DTA", replace
+save "Temp/May2021.DTA", replace
 
-use "Jun2021I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jun2021II.DTA"
+use "Data/Jun2021I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jun2021II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jun2021III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jun2021III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jun2021IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jun2021IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 replace MES = "06"
-save "Jun2021.DTA", replace
+save "Temp/Jun2021.DTA", replace
 
-use "Jul2021I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jul2021II.DTA"
+use "Data/Jul2021I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jul2021II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jul2021III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jul2021III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jul2021IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jul2021IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 replace MES = "07"
-save "Jul2021.DTA", replace
+save "Temp/Jul2021.DTA", replace
 
-use "Ago2021I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ago2021II.DTA"
+use "Data/Ago2021I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ago2021II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ago2021III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ago2021III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ago2021IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ago2021IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 replace MES = "08"
-save "Ago2021.DTA", replace
+save "Temp/Ago2021.DTA", replace
 
-use "Sep2021I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Sep2021II.DTA"
+use "Data/Sep2021I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Sep2021II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Sep2021III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Sep2021III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Sep2021IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Sep2021IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 replace MES = "09"
-save "Sep2021.DTA", replace
+save "Temp/Sep2021.DTA", replace
 
-use "Oct2021I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Oct2021II.DTA"
+use "Data/Oct2021I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Oct2021II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Oct2021III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Oct2021III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Oct2021IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Oct2021IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Oct2021.DTA", replace
+save "Temp/Oct2021.DTA", replace
 
-use "Nov2021I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Nov2021II.DTA"
+use "Data/Nov2021I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Nov2021II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Nov2021III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Nov2021III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Nov2021IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Nov2021IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Nov2021.DTA", replace
+save "Temp/Nov2021.DTA", replace
 
-use "Dic2021I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Dic2021II.DTA"
+use "Data/Dic2021I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Dic2021II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Dic2021III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Dic2021III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Dic2021IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Dic2021IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Dic2021.DTA", replace
+save "Temp/Dic2021.DTA", replace
 
-use "Ene2021.DTA"
-append using "Feb2021.DTA"
-append using "Mar2021.DTA"
-append using "Abr2021.DTA"
-append using "May2021.DTA"
-append using "Jun2021.DTA"
-append using "Jul2021.DTA"
-append using "Ago2021.DTA"
-append using "Sep2021.DTA"
-append using "Oct2021.DTA"
-append using "Nov2021.DTA"
-append using "Dic2021.DTA"
+use "Temp/Ene2021.DTA"
+append using "Temp/Feb2021.DTA"
+append using "Temp/Mar2021.DTA"
+append using "Temp/Abr2021.DTA"
+append using "Temp/May2021.DTA"
+append using "Temp/Jun2021.DTA"
+append using "Temp/Jul2021.DTA"
+append using "Temp/Ago2021.DTA"
+append using "Temp/Sep2021.DTA"
+append using "Temp/Oct2021.DTA"
+append using "Temp/Nov2021.DTA"
+append using "Temp/Dic2021.DTA"
 gen Ano = 2021
 
 destring MES DPTO, replace
@@ -299,162 +316,161 @@ ren INGRETOTAL INGTOTALPERSO
 drop if INGLABO ==. & ALQUILER ==. & INGnoOCUPA ==. & PENSIOJUB ==. & PENALIM ==. & APORTESFAMI ==. & REMESAS ==. & INGRESOL ==. & INGRESOSFINAN ==. & CESANTIAS ==. & INGOCACIONALES ==.
 keep MES DPTO INGTOTALPERSO Ano
 
-save "2021.DTA", replace
+save "Temp/2021.DTA", replace
 clear all
 **************************************************************
 ***************-------2022----------**************************
 **************************************************************
-cd "D:\U\Investigaciones\Gini Pandemia\Datos GEIH\" 
-use "Ene2022I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ene2022II.DTA"
+use "Data/Ene2022I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ene2022II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ene2022III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ene2022III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ene2022IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ene2022IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 destring MES, replace
-save "Ene2022.DTA", replace
+save "Temp/Ene2022.DTA", replace
 
-use "Feb2022I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Feb2022II.DTA"
+use "Data/Feb2022I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Feb2022II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Feb2022III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Feb2022III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Feb2022IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Feb2022IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 destring MES, replace
 replace MES = 2 if MES == 1
-save "Feb2022.DTA", replace
+save "Temp/Feb2022.DTA", replace
 
-use "Mar2022I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Mar2022II.DTA"
+use "Data/Mar2022I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Mar2022II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Mar2022III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Mar2022III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Mar2022IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Mar2022IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 destring MES, replace
 replace MES = 3 if MES == 1
-save "Mar2022.DTA", replace
+save "Temp/Mar2022.DTA", replace
 
-use "Abr2022I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Abr2022II.DTA"
+use "Data/Abr2022I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Abr2022II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Abr2022III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Abr2022III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Abr2022IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Abr2022IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 destring MES, replace
 replace MES = 4 if MES == 1
-save "Abr2022.DTA", replace
+save "Temp/Abr2022.DTA", replace
 
-use "May2022I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "May2022II.DTA"
+use "Data/May2022I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/May2022II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "May2022III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/May2022III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "May2022IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/May2022IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 destring MES, replace
 replace MES = 5 if MES == 1
-save "May2022.DTA", replace
+save "Temp/May2022.DTA", replace
 
-use "Jun2022I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jun2022II.DTA"
+use "Data/Jun2022I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jun2022II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jun2022III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jun2022III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jun2022IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jun2022IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 destring MES, replace
 replace MES = 6 if MES == 1
-save "Jun2022.DTA", replace
+save "Temp/Jun2022.DTA", replace
 
-use "Jul2022I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jul2022II.DTA"
+use "Data/Jul2022I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jul2022II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jul2022III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jul2022III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jul2022IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jul2022IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 destring MES, replace
-save "Jul2022.DTA", replace
+save "Temp/Jul2022.DTA", replace
 
-use "Ago2022I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ago2022II.DTA"
+use "Data/Ago2022I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ago2022II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ago2022III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ago2022III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ago2022IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ago2022IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 destring MES, replace
 replace MES = 8 if MES == 1
-save "Ago2022.DTA", replace
+save "Temp/Ago2022.DTA", replace
 
-use "Sep2022I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Sep2022II.DTA"
+use "Data/Sep2022I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Sep2022II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Sep2022III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Sep2022III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Sep2022IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Sep2022IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 destring MES, replace
-save "Sep2022.DTA", replace
+save "Temp/Sep2022.DTA", replace
 
-use "Oct2022I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Oct2022II.DTA"
+use "Data/Oct2022I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Oct2022II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Oct2022III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Oct2022III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Oct2022IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Oct2022IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 destring MES, replace
-save "Oct2022.DTA", replace
+save "Temp/Oct2022.DTA", replace
 
-use "Nov2022I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Nov2022II.DTA"
+use "Data/Nov2022I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Nov2022II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Nov2022III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Nov2022III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Nov2022IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Nov2022IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 destring MES, replace
-save "Nov2022.DTA", replace
+save "Temp/Nov2022.DTA", replace
 
-use "Dic2022I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Dic2022II.DTA"
+use "Data/Dic2022I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Dic2022II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Dic2022III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Dic2022III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Dic2022IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Dic2022IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
 destring MES, replace
-save "Dic2022.DTA", replace
+save "Temp/Dic2022.DTA", replace
 
-use "Ene2022.DTA"
-append using "Feb2022.DTA"
-append using "Mar2022.DTA"
-append using "Abr2022.DTA"
-append using "May2022.DTA"
-append using "Jun2022.DTA"
-append using "Jul2022.DTA"
-append using "Ago2022.DTA"
-append using "Sep2022.DTA"
-append using "Oct2022.DTA"
-append using "Nov2022.DTA"
-append using "Dic2022.DTA"
+use "Temp/Ene2022.DTA"
+append using "Temp/Feb2022.DTA"
+append using "Temp/Mar2022.DTA"
+append using "Temp/Abr2022.DTA"
+append using "Temp/May2022.DTA"
+append using "Temp/Jun2022.DTA"
+append using "Temp/Jul2022.DTA"
+append using "Temp/Ago2022.DTA"
+append using "Temp/Sep2022.DTA"
+append using "Temp/Oct2022.DTA"
+append using "Temp/Nov2022.DTA"
+append using "Temp/Dic2022.DTA"
 gen Ano = 2022
 
 destring MES DPTO, replace
@@ -477,144 +493,143 @@ ren INGRETOTAL INGTOTALPERSO
 drop if INGLABO ==. & ALQUILER ==. & INGnoOCUPA ==. & PENSIOJUB ==. & PENALIM ==. & APORTESFAMI ==. & REMESAS ==. & INGRESOL ==. & INGRESOSFINAN ==. & CESANTIAS ==. & INGOCACIONALES ==.
 keep MES DPTO INGTOTALPERSO Ano
 
-save "2022.DTA", replace
+save "Temp/2022.DTA", replace
 clear all
 **************************************************************
 ***************-------2023----------**************************
 **************************************************************
-cd "D:\U\Investigaciones\Gini Pandemia\Datos GEIH\" 
-use "Ene2023I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ene2023II.DTA"
+use "Data/Ene2023I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ene2023II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ene2023III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ene2023III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ene2023IV.DTA"
-drop _merge 
-keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Ene2023.DTA", replace
-
-use "Feb2023I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Feb2023II.DTA"
-drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Feb2023III.DTA"
-drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Feb2023IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ene2023IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Feb2023.DTA", replace
+save "Temp/Ene2023.DTA", replace
 
-use "Mar2023I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Mar2023II.DTA"
+use "Data/Feb2023I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Feb2023II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Mar2023III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Feb2023III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Mar2023IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Feb2023IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Mar2023.DTA", replace
+save "Temp/Feb2023.DTA", replace
 
-use "Abr2023I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Abr2023II.DTA"
+use "Data/Mar2023I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Mar2023II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Abr2023III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Mar2023III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Abr2023IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Mar2023IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Abr2023.DTA", replace
+save "Temp/Mar2023.DTA", replace
 
-use "May2023I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "May2023II.DTA"
+use "Data/Abr2023I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Abr2023II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "May2023III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Abr2023III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "May2023IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Abr2023IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "May2023.DTA", replace
+save "Temp/Abr2023.DTA", replace
 
-use "Jun2023I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jun2023II.DTA"
+use "Data/May2023I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/May2023II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jun2023III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/May2023III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jun2023IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/May2023IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Jun2023.DTA", replace
+save "Temp/May2023.DTA", replace
 
-use "Jul2023I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jul2023II.DTA"
+use "Data/Jun2023I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jun2023II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jul2023III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jun2023III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Jul2023IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jun2023IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Jul2023.DTA", replace
+save "Temp/Jun2023.DTA", replace
 
-use "Ago2023I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ago2023II.DTA"
+use "Data/Jul2023I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jul2023II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ago2023III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jul2023III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Ago2023IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Jul2023IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Ago2023.DTA", replace
+save "Temp/Jul2023.DTA", replace
 
-use "Sep2023I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Sep2023II.DTA"
+use "Data/Ago2023I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ago2023II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Sep2023III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ago2023III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Sep2023IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Ago2023IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Sep2023.DTA", replace
+save "Temp/Ago2023.DTA", replace
 
-use "Oct2023I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Oct2023II.DTA"
+use "Data/Sep2023I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Sep2023II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Oct2023III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Sep2023III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Oct2023IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Sep2023IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Oct2023.DTA", replace
+save "Temp/Sep2023.DTA", replace
 
-use "Nov2023I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Nov2023II.DTA"
+use "Data/Oct2023I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Oct2023II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Nov2023III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Oct2023III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Nov2023IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Oct2023IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Nov2023.DTA", replace
+save "Temp/Oct2023.DTA", replace
 
-use "Dic2023I.DTA"
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Dic2023II.DTA"
+use "Data/Nov2023I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Nov2023II.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Dic2023III.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Nov2023III.DTA"
 drop _merge 
-merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Dic2023IV.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Nov2023IV.DTA"
 drop _merge 
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Dic2023.DTA", replace
+save "Temp/Nov2023.DTA", replace
 
-use "Ene2023.DTA"
-append using "Feb2023.DTA"
-append using "Mar2023.DTA"
-append using "Abr2023.DTA"
-append using "May2023.DTA"
-append using "Jun2023.DTA"
-append using "Jul2023.DTA"
-append using "Ago2023.DTA"
-append using "Sep2023.DTA"
-append using "Oct2023.DTA"
-append using "Nov2023.DTA"
-append using "Dic2023.DTA"
+use "Data/Dic2023I.DTA"
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Dic2023II.DTA"
+drop _merge 
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Dic2023III.DTA"
+drop _merge 
+merge 1:1 DIRECTORIO SECUENCIA_P ORDEN using "Data/Dic2023IV.DTA"
+drop _merge 
+keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
+save "Temp/Dic2023.DTA", replace
+
+use "Temp/Ene2023.DTA"
+append using "Temp/Feb2023.DTA"
+append using "Temp/Mar2023.DTA"
+append using "Temp/Abr2023.DTA"
+append using "Temp/May2023.DTA"
+append using "Temp/Jun2023.DTA"
+append using "Temp/Jul2023.DTA"
+append using "Temp/Ago2023.DTA"
+append using "Temp/Sep2023.DTA"
+append using "Temp/Oct2023.DTA"
+append using "Temp/Nov2023.DTA"
+append using "Temp/Dic2023.DTA"
 gen Ano = 2023
 
 destring MES DPTO, replace
@@ -637,72 +652,71 @@ ren INGRETOTAL INGTOTALPERSO
 drop if INGLABO ==. & ALQUILER ==. & INGnoOCUPA ==. & PENSIOJUB ==. & PENALIM ==. & APORTESFAMI ==. & REMESAS ==. & INGRESOL ==. & INGRESOSFINAN ==. & CESANTIAS ==. & INGOCACIONALES ==.
 keep MES DPTO INGTOTALPERSO Ano
 
-save "2023.DTA", replace
+save "Temp/2023.DTA", replace
 clear all
 **************************************************************
 ***************-------2024----------**************************
 **************************************************************
-cd "D:\U\Investigaciones\Gini Pandemia\Datos GEIH\" 
-use "D:\U\Investigaciones\GEIH\Enero2024.dta"
+use "Data/Enero2024.dta"
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Ene2024.DTA", replace
+save "Temp/Ene2024.DTA", replace
 
-use "D:\U\Investigaciones\GEIH\Febrero2024.dta"
+use "Data/Febrero2024.dta"
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Feb2024.DTA", replace
+save "Temp/Feb2024.DTA", replace
 
-use "D:\U\Investigaciones\GEIH\Marzo2024.dta"
+use "Data/Marzo2024.dta"
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Mar2024.DTA", replace
+save "Temp/Mar2024.DTA", replace
 
-use "D:\U\Investigaciones\GEIH\Abril2024.dta"
+use "Data/Abril2024.dta"
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Abr2024.DTA", replace
+save "Temp/Abr2024.DTA", replace
 
-use "D:\U\Investigaciones\GEIH\Mayo2024.dta"
+use "Data/Mayo2024.dta"
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "May2024.DTA", replace
+save "Temp/May2024.DTA", replace
 
-use "D:\U\Investigaciones\GEIH\Junio2024.dta"
+use "Data/Junio2024.dta"
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Jun2024.DTA", replace
+save "Temp/Jun2024.DTA", replace
 
-use "D:\U\Investigaciones\GEIH\Julio2024.dta"
+use "Data/Julio2024.dta"
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Jul2024.DTA", replace
+save "Temp/Jul2024.DTA", replace
 
-use "D:\U\Investigaciones\GEIH\Agosto2024.dta"
+use "Data/Agosto2024.dta"
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Ago2024.DTA", replace
+save "Temp/Ago2024.DTA", replace
 
-use "D:\U\Investigaciones\GEIH\Septi2024.dta"
+use "Data/Septi2024.dta"
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Sep2024.DTA", replace
+save "Temp/Sep2024.DTA", replace
 
-use "D:\U\Investigaciones\GEIH\Octubre2024.dta"
+use "Data/Octubre2024.dta"
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Oct2024.DTA", replace
+save "Temp/Oct2024.DTA", replace
 
-use "D:\U\Investigaciones\GEIH\Novi2024.dta"
+use "Data/Novi2024.dta"
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Nov2024.DTA", replace
+save "Temp/Nov2024.DTA", replace
 
-use "D:\U\Investigaciones\GEIH\Dici2024.dta"
+use "Data/Dici2024.dta"
 keep MES DPTO INGLABO P7500S1A1 P7500S2A1 P7500S3A1 P7510S1A1 P7510S2A1 P7510S3A1 P7510S5A1 P7510S6A1 P7510S7A1 P7422S1 P3087S1      
-save "Dic2024.DTA", replace
+save "Temp/Dic2024.DTA", replace
 
-use "Ene2024.DTA"
-append using "Feb2024.DTA"
-append using "Mar2024.DTA"
-append using "Abr2024.DTA"
-append using "May2024.DTA"
-append using "Jun2024.DTA"
-append using "Jul2024.DTA"
-append using "Ago2024.DTA"
-append using "Sep2024.DTA"
-append using "Oct2024.DTA"
-append using "Nov2024.DTA"
-append using "Dic2024.DTA"
+use "Temp/Ene2024.DTA"
+append using "Temp/Feb2024.DTA"
+append using "Temp/Mar2024.DTA"
+append using "Temp/Abr2024.DTA"
+append using "Temp/May2024.DTA"
+append using "Temp/Jun2024.DTA"
+append using "Temp/Jul2024.DTA"
+append using "Temp/Ago2024.DTA"
+append using "Temp/Sep2024.DTA"
+append using "Temp/Oct2024.DTA"
+append using "Temp/Nov2024.DTA"
+append using "Temp/Dic2024.DTA"
 gen Ano = 2024
 
 destring MES DPTO, replace
@@ -725,18 +739,18 @@ ren INGRETOTAL INGTOTALPERSO
 drop if INGLABO ==. & ALQUILER ==. & INGnoOCUPA ==. & PENSIOJUB ==. & PENALIM ==. & APORTESFAMI ==. & REMESAS ==. & INGRESOL ==. & INGRESOSFINAN ==. & CESANTIAS ==. & INGOCACIONALES ==.
 keep MES DPTO INGTOTALPERSO Ano
 
-save "2024.DTA", replace
+save "Temp/2024.DTA", replace
 clear all
 
 **************************************************************
 ***************-------Total---------**************************
 **************************************************************
 
-use "2024.DTA"
-append using "2023.DTA"
-append using "2022.DTA"
-append using "2021.DTA", force
-append using "2020.DTA"
+use "Temp/2024.DTA"
+append using "Temp/2023.DTA"
+append using "Temp/2022.DTA"
+append using "Temp/2021.DTA", force
+append using "Temp/2020.DTA"
 
 ren INGTOTALPERSO Ing
 
@@ -809,5 +823,5 @@ replace Ing = Ing/1.4488 if Ano == 2024 & MES == 12
 
 ren Ing INGLABO
 
-save "D:\U\Investigaciones\Gini Pandemia\Total.DTA", replace
+save "Output/Total.DTA", replace
 clear all

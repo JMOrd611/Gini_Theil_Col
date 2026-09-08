@@ -1,12 +1,22 @@
-rm(list=ls())
-setwd("D:/U/Investigaciones/Gini Pandemia")
+# =====================================================================
+# 03_Gini-Theil.R
+# Código para crear los índices en R.
+# Requiere haber ejecutado antes Code/01_GEIH.do
+#
+# Abrir mediante el archivo .Rproj de la raiz del repositorio.
+# No usar setwd(): el proyecto fija el directorio de trabajo.
+#
+# Fuente: Departamento Administrativo Nacional de Estadistica:
+# www.dane.gov.co
+# =====================================================================
+
 library(DescTools)
 library(haven)
 library(openxlsx)
 library(concstats)
 library(dplyr)
 library(ineq)
-Total <- read_dta("Total.DTA")
+Total <- read_dta("Output/Total.DTA")
 Total <- Total %>% filter(!is.na(INGLABO)) ## Base Dic. 2018
 ## AÑOS (Gini-Theil)############################################ 
 ### 2020
@@ -936,4 +946,4 @@ datos <- data.frame(
             GinTot, TheilTot, PalmaTot, AtkTot)
 )
 
-write.xlsx(datos, "Datos.xlsx")
+write.xlsx(datos, "Output/Datos.xlsx")
