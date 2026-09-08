@@ -11,11 +11,11 @@ Gran Encuesta Integrada de Hogares (GEIH), 2020-2024. Microdatos públicos dispo
 
 Los microdatos no se incluyen en este repositorio. Descárgalos y ubícalos en `Data/`.
 
-Para 2020-2023 el script espera los cuatro módulos mensuales con el formato `MesAAAA` + numeral romano del módulo, por ejemplo `Ene2020I.DTA`, `Ene2020II.DTA`, `Ene2020III.DTA`, `Ene2020IV.DTA`.
+Para 2020-2023 el script espera los cuatro módulos mensuales con el formato `MesAAAA` + numeral romano del módulo, por ejemplo `Ene2020I.DTA`, `Ene2020II.DTA`, `Ene2020III.DTA`, `Ene2020IV.DTA`. Los cuatro modulos a descargar para cada mes son `Ocupados`, `No Ocupados`, `Otros ingresos e impuestos` y `Otras formas de trabajo`.
+
+Algunos meses o años vienen con menos de cuatro archivos debido a que estos no existen en el repositorio del DANE.
 
 Meses en español abreviados a tres letras: Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic.
-
-Para 2024 el script espera un único archivo mensual con el nombre completo del mes: `Enero2024.dta`, `Febrero2024.dta`, `Marzo2024.dta`, `Abril2024.dta`, `Mayo2024.dta`, `Junio2024.dta`, `Julio2024.dta`, `Agosto2024.dta`, `Septi2024.dta`, `Octubre2024.dta`, `Novi2024.dta`, `Dici2024.dta`.
 
 Fuente: Departamento Administrativo Nacional de Estadística:
 www.dane.gov.co
