@@ -7,11 +7,11 @@ Gran Encuesta Integrada de Hogares 2020-2025 descargables [[aquí](https://micro
 Los datos no se incluyen en este repositorio; descárgalos y ubícalos en `Data/`.
 
 ## Estructura
-- `Code/00_master.R` — ejecuta todo el pipeline en orden
+- `Code/00_R_Master.R` — ejecuta el código de R
 - `Code/01_GEIH.do` — realiza el limpiado de base de datos de la GEIH. Al final genera el archivo "Total.DTA" de `Output/`.
-- `Code/Gini-Theil.R` — cálculo de índices de Gini y Theil a nivel subnacional
-- `Data/` — datos de entrada (no versionados)
-- `Output/` — tablas y figuras generadas
+- `Code/02_Gini-Theil.R` — cálculo de índices de Gini y Theil a nivel subnacional
+- `Data/` — datos de entrada (descargar directamente del DANE)
+- `Output/` — tablas, figuras y archivos generados
 
 ## Cómo ejecutar
 1. Descargar los datos y ubicarlos en `Data/`
