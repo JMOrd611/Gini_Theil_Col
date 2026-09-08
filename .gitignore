@@ -57,5 +57,3 @@ rsconnect/
 *.csv
 *.xlsx
 !Output/Total.dta
-
-[Tt]emp/
