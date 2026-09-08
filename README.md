@@ -3,7 +3,7 @@ Desigualdad salarial en Colombia: una desagregación departamental
 Código de la ponencia presentada en el IV Network de Métodos Cuantitativos (AFADECO, Barranquilla, 2025).
 
 ## Datos
-Gran Encuesta Integrada de Hogares 2020-2025 descargables [[aquí](https://microdatos.dane.gov.co/index.php/catalog/MERCLAB-Microdatos)]. 
+Gran Encuesta Integrada de Hogares 2020-2025 descargables [aquí](https://microdatos.dane.gov.co/index.php/catalog/MERCLAB-Microdatos). 
 Los datos no se incluyen en este repositorio; descárgalos y ubícalos en `Data/`.
 
 ## Estructura
@@ -15,9 +15,10 @@ Los datos no se incluyen en este repositorio; descárgalos y ubícalos en `Data/
 
 ## Cómo ejecutar
 1. Descargar los datos y ubicarlos en `Data/`
-2. Abrir el proyecto y ejecutar `Code/00_master.R`
+2. Abrir el proyecto y ejecutar `Code/01_GEIH.do`
+3. Usar el archivo final del paso anterior (Igual a `Output/Total.DTA`) y ejecutar `Code/00_R_Master.R`.
 
 ## Requisitos
 R - Stata
 ## Autor
-Jose Manuel Ordoñez Claros — [[ORCID](https://orcid.org/0009-0000-3332-1087)] 
+Jose Manuel Ordoñez Claros — [ORCID](https://orcid.org/0009-0000-3332-1087) 
